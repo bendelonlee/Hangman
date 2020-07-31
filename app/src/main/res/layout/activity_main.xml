@@ -17,6 +17,7 @@
         android:minHeight="20sp">
 
         <TextView
+            android:textSize="@dimen/txtTitle"
             android:gravity="center"
             android:id="@+id/txtTitle"
             android:textColor="@color/colorPrimaryDark"
@@ -30,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:textSize="@dimen/txtWordToBeGuessed"
             android:gravity="center"
             android:id="@+id/txtToBeGuessed"
             android:textColor="@color/colorPrimaryDark"
@@ -43,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <EditText
+            android:textSize="@dimen/edtInput"
             android:gravity="center"
             android:id="@+id/edtInput"
             android:textColor="@color/colorPrimaryDark"
@@ -51,11 +54,13 @@
     </TableRow>
 
     <TableRow
+
         android:layout_weight="1"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:textSize="@dimen/txtLettersTried"
             android:gravity="center"
             android:textColor="@color/colorPrimaryDark"
             android:text="Letters used"
@@ -69,6 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:textSize="@dimen/txtTriesLeft"
             android:gravity="center"
             android:textColor="@color/colorPrimaryDark"
             android:text="X X X X X"
@@ -81,6 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <Button
+            android:textSize="@dimen/btnReset"
             android:gravity="center"
             android:text="Reset"
             android:id="@+id/btnReset"
