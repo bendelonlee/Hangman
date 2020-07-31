@@ -111,6 +111,7 @@
             android:textColor="@color/colorPrimaryDark"
             android:text="Reset"
             android:id="@+id/btnReset"
+            android:onClick="resetGame"
 
             >
 

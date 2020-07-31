@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -210,5 +211,10 @@ public class MainActivity extends AppCompatActivity {
             triesLeft = triesLeft.substring(0, triesLeft.length() - 2);
             txtTriesLeft.setText(triesLeft);
         }
+    }
+
+    public void resetGame(View v){
+        //setup a new game
+        initializeGame();
     }
 }
