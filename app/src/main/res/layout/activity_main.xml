@@ -11,10 +11,12 @@
     >
 
     <TableRow
+        android:gravity="center"
         android:layout_width="match_parent"
         android:minHeight="20sp">
 
         <TextView
+            android:gravity="center"
             android:id="@+id/txtTitle"
             android:textColor="@color/colorPrimaryDark"
             android:text="@string/app_name"
@@ -22,9 +24,11 @@
     </TableRow>
 
     <TableRow
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:gravity="center"
             android:id="@+id/txtToBeGuessed"
             android:textColor="@color/colorPrimaryDark"
             android:text="My Word"
@@ -32,9 +36,11 @@
     </TableRow>
 
     <TableRow
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <EditText
+            android:gravity="center"
             android:id="@+id/edtInput"
             android:textColor="@color/colorPrimaryDark"
             android:hint="input one letter"
@@ -42,9 +48,11 @@
     </TableRow>
 
     <TableRow
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:gravity="center"
             android:textColor="@color/colorPrimaryDark"
             android:text="Letters used"
             android:id="@+id/lettersTried"
@@ -52,25 +60,30 @@
     </TableRow>
 
     <TableRow
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:gravity="center"
             android:textColor="@color/colorPrimaryDark"
             android:text="X X X X X"
             android:id="@+id/txtTriesLeft"
             />
     </TableRow>
     <TableRow
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <Button
+            android:gravity="center"
+            android:text="Reset"
+            android:id="@+id/btnReset"
+
+            >
+
+        </Button>
 
     </TableRow>
-    <Button
-        android:text="Reset"
-        android:id="@+id/btnReset"
 
-        >
-
-    </Button>
 </TableLayout>
 
