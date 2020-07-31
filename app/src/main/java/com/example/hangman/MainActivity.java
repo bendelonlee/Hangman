@@ -199,8 +199,9 @@ public class MainActivity extends AppCompatActivity {
 
         //display the letter that was tried
         if(lettersTried.indexOf(letter) < 0){
-            lettersTried += letter + ". ";
+            lettersTried += letter + ", ";
             String messageToBeDisplayed = MESSAGE_WITH_LETTERS_TRIED + lettersTried;
+            txtLettersTried.setText(messageToBeDisplayed);
         }
 
     }
