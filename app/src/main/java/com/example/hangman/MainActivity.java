@@ -2,6 +2,8 @@ package com.example.hangman;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,6 +35,26 @@ public class MainActivity extends AppCompatActivity {
     Animation scaleAnimation;
     Animation scaleAndRotateAnimation;
 
+    void revealLetterInWord(char letter){
+        int indexOfLetter = wordToBeGuessed.indexOf(letter);
+        while(indexOfLetter >= 0){
+            wordDisplayedCharArray[indexOfLetter] = wordToBeGuessed.charAt(indexOfLetter);
+            indexOfLetter = wordToBeGuessed.indexOf(letter, indexOfLetter + 1);
+
+        }
+
+        //update the string as well
+        wordDisplayedString = String.valueOf(wordDisplayedCharArray);
+    }
+
+    void displayWordOnScreen(){
+        String formattedString = "";
+        for(char character : wordDisplayedCharArray){
+            formattedString += character + " ";
+        }
+        txtWordToBeGuessed.setText(formattedString);
+    }
+
     void initializeGame(){
         //1.Word
         //Shuffle array list and get first element, then remove it
@@ -54,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         revealLetterInWord(wordDisplayedCharArray[wordDisplayedCharArray.length - 1]);
 
         // initialize a string from this char array
-        wordDisplayedCharString = String.valueOf(wordDisplayedCharArray);
+        String wordDisplayedCharString = String.valueOf(wordDisplayedCharArray);
 
         //display word
         displayWordOnScreen();
@@ -124,5 +146,69 @@ public class MainActivity extends AppCompatActivity {
         }
 
         initializeGame();
+
+        //setup the text change listener
+        edtInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length() != 0){
+                    checkIfLetterIsInWord(s.charAt(0));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    void checkIfLetterIsInWord(char letter){
+        //if the letter was found inside the word to be guessed
+        if(wordToBeGuessed.indexOf(letter) >= 0){
+            //if the letter was NOT displayed yet
+            if (wordDisplayedString.indexOf(letter) < 0 ) {
+                //replace the underscores with that letter
+                revealLetterInWord(letter);
+                //update the changes on the screen
+                displayWordOnScreen();
+                //check if the game is won
+                if(!wordDisplayedString.contains("_")){
+                    txtTriesLeft.setText(WINNING_MESSAGE);
+                }
+            }
+        }
+        //otherwise if the letter was not found inside the word to be guessed
+        else {
+            //decrease and display tries
+            decreaseAndDisplayTriesLeft();
+            // check if the game is lost
+            if(triesLeft.isEmpty()) {
+                txtTriesLeft.setText(LOSING_MESSAGE);
+                txtWordToBeGuessed.setText(wordToBeGuessed);
+
+            }
+
+        }
+
+        //display the letter that was tried
+        if(lettersTried.indexOf(letter) < 0){
+            lettersTried += letter + ". ";
+            String messageToBeDisplayed = MESSAGE_WITH_LETTERS_TRIED + lettersTried;
+        }
+
+    }
+    void decreaseAndDisplayTriesLeft(){
+        //if there are still some tries left
+        if(!triesLeft.isEmpty()){
+            //take out the last 2 characters
+            triesLeft = triesLeft.substring(0, triesLeft.length() - 2);
+            txtTriesLeft.setText(triesLeft);
+        }
     }
 }
