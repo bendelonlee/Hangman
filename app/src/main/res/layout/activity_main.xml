@@ -52,7 +52,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <EditText
-
+            android:maxLength="1"
+            android:textStyle="italic"
             android:textSize="@dimen/edtInput"
             android:gravity="center"
             android:id="@+id/edtInput"
@@ -87,6 +88,7 @@
         android:layout_height="match_parent">
         <TextView
             android:layout_column="0"
+            android:textStyle="bold"
             android:textSize="@dimen/txtTriesLeft"
             android:gravity="center"
             android:textColor="@color/colorAccent"
@@ -101,6 +103,8 @@
         android:layout_height="match_parent"
         >
         <Button
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="@color/colorSecondary"
             android:textSize="@dimen/btnReset"
             android:gravity="center"
