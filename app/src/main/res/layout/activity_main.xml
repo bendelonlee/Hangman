@@ -8,6 +8,8 @@
 
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="1dp"
+
+    android:background="@color/colorPrimary"
     >
 
     <TableRow
@@ -17,10 +19,12 @@
         android:minHeight="20sp">
 
         <TextView
+            android:layout_column="0"
+
             android:textSize="@dimen/txtTitle"
             android:gravity="center"
             android:id="@+id/txtTitle"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorAccent"
             android:text="@string/app_name"
             />
     </TableRow>
@@ -29,12 +33,15 @@
         android:layout_weight="1"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        >
         <TextView
+            android:layout_column="0"
             android:textSize="@dimen/txtWordToBeGuessed"
             android:gravity="center"
             android:id="@+id/txtToBeGuessed"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorAccent"
             android:text="My Word"
             />
     </TableRow>
@@ -45,10 +52,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <EditText
+
             android:textSize="@dimen/edtInput"
             android:gravity="center"
             android:id="@+id/edtInput"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorSecondary"
+            android:textColorHint="@color/colorSecondary"
             android:hint="input one letter"
             />
     </TableRow>
@@ -58,11 +67,14 @@
         android:layout_weight="1"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        >
         <TextView
+            android:layout_column="0"
             android:textSize="@dimen/txtLettersTried"
             android:gravity="center"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorAccent"
             android:text="Letters used"
             android:id="@+id/lettersTried"
             />
@@ -74,9 +86,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:layout_column="0"
             android:textSize="@dimen/txtTriesLeft"
             android:gravity="center"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorAccent"
             android:text="X X X X X"
             android:id="@+id/txtTriesLeft"
             />
@@ -85,10 +98,13 @@
         android:layout_weight="1"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
         <Button
+            android:background="@color/colorSecondary"
             android:textSize="@dimen/btnReset"
             android:gravity="center"
+            android:textColor="@color/colorPrimaryDark"
             android:text="Reset"
             android:id="@+id/btnReset"
 
