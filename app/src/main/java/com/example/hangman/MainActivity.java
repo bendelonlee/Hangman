@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Animation rotateAnimation;
     Animation scaleAnimation;
     Animation scaleAndRotateAnimation;
+
 
     void revealLetterInWord(char letter){
         int indexOfLetter = wordToBeGuessed.indexOf(letter);
@@ -112,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         edtInput = (EditText) findViewById(R.id.edtInput);
         txtLettersTried = (TextView) findViewById(R.id.lettersTried);
         txtTriesLeft= (TextView) findViewById(R.id.txtTriesLeft);
+        rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate);
 
         //traverse databse file and populate array list;
 
@@ -215,6 +218,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void resetGame(View v){
+
+        //start animation
+        v.startAnimation(rotateAnimation);
         //setup a new game
         initializeGame();
     }
