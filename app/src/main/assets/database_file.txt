@@ -1,0 +1,15 @@
+happy
+sad
+application
+black
+green
+gray
+yellow
+anywhere
+bark
+olive
+cup
+desk
+bag
+shoe
+sombrero
