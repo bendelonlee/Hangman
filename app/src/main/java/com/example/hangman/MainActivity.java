@@ -10,6 +10,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +33,49 @@ public class MainActivity extends AppCompatActivity {
     Animation scaleAnimation;
     Animation scaleAndRotateAnimation;
 
+    void initializeGame(){
+        //1.Word
+        //Shuffle array list and get first element, then remove it
+        Collections.shuffle(myListOfWords);
+        wordToBeGuessed = myListOfWords.get(0);
+        myListOfWords.remove(0);
+        //initialize char array
+        wordDisplayedCharArray = wordToBeGuessed.toCharArray();
+        //add underscores
+        for(int i = 1; i < wordDisplayedCharArray.length - 1; i++){
+            wordDisplayedCharArray[i] = '_';
 
+        }
+
+        //reveal all occurences of first character
+        revealLetterInWord(wordDisplayedCharArray[0]);
+
+        //reveal all occurrences of last character
+        revealLetterInWord(wordDisplayedCharArray[wordDisplayedCharArray.length - 1]);
+
+        // initialize a string from this char array
+        wordDisplayedCharString = String.valueOf(wordDisplayedCharArray);
+
+        //display word
+        displayWordOnScreen();
+
+        //2. INPUT
+        //clear input field
+        edtInput.setText("");
+
+        //3. Letters tried
+        //initialize string for letters tried with a space
+        lettersTried = "";
+
+        //display on screen
+        txtLettersTried.setText(MESSAGE_WITH_LETTERS_TRIED);
+
+        //4.Tries Left
+        //initialize the string with tries left
+        triesLeft = " X X X X X";
+        txtTriesLeft.setText(triesLeft);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
             while(in.hasNext()){
                 aWord = in.next();
                 myListOfWords.add(aWord);
-                Toast.makeText(MainActivity.this, aWord, Toast.LENGTH_SHORT).show();
-
             }
         } catch(IOException e){
             Toast.makeText(MainActivity.this,
@@ -81,5 +122,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         }
+
+        initializeGame();
     }
 }
