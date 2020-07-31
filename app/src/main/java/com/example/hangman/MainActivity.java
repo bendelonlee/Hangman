@@ -34,5 +34,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //initialize variables
+
+        myListOfWords = new ArrayList<String>();
+        txtWordToBeGuessed = (TextView) findViewById(R.id.txtToBeGuessed);
+        edtInput = (EditText) findViewById(R.id.edtInput);
+        txtLettersTried = (TextView) findViewById(R.id.lettersTried);
+        txtTriesLeft= (TextView) findViewById(R.id.txtTriesLeft);
     }
 }
