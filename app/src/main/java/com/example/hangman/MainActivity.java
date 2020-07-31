@@ -2,8 +2,33 @@ package com.example.hangman;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    //declare variables
+
+    TextView txtWordToBeGuessed;
+    String wordToBeGuessed;
+    String wordDisplayedString;
+    char[] wordDisplayedCharArray;
+    ArrayList<String> myListOfWords;
+    EditText edtInput;
+    TextView txtLettersTried;
+    String lettersTried;
+    final String MESSAGE_WITH_LETTERS_TRIED = "Letters tried: ";
+    TextView txtTriesLeft;
+    String triesLeft;
+    final String WINNING_MESSAGE = "You won";
+    final String LOSING_MESSAGE = "You lost";
+    Animation rotateAnimation;
+    Animation scaleAnimation;
+    Animation scaleAndRotateAnimation;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
