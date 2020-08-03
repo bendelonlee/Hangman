@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     Animation rotateAnimation;
     Animation scaleAnimation;
     Animation scaleAndRotateAnimation;
+    TableRow trReset;
+    TableRow trGameState;
 
 
     void revealLetterInWord(char letter){
@@ -115,8 +118,12 @@ public class MainActivity extends AppCompatActivity {
         txtLettersTried = (TextView) findViewById(R.id.lettersTried);
         txtTriesLeft= (TextView) findViewById(R.id.txtTriesLeft);
         rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate);
-
-        //traverse databse file and populate array list;
+        scaleAnimation = AnimationUtils.loadAnimation(this, R.anim.scale);
+        scaleAndRotateAnimation = AnimationUtils.loadAnimation(this, R.anim.scale_and_rotate);
+        scaleAndRotateAnimation.setFillAfter(true);
+        trReset = (TableRow) findViewById(R.id.trReset);
+        trGameState = (TableRow) findViewById(R.id.trGameState);
+        //traverse database file and populate array list
 
         InputStream myInputStream = null;
         Scanner in = null;
@@ -177,12 +184,18 @@ public class MainActivity extends AppCompatActivity {
         if(wordToBeGuessed.indexOf(letter) >= 0){
             //if the letter was NOT displayed yet
             if (wordDisplayedString.indexOf(letter) < 0 ) {
+
+                //animate
+                txtWordToBeGuessed.startAnimation(scaleAnimation);
+
                 //replace the underscores with that letter
                 revealLetterInWord(letter);
                 //update the changes on the screen
                 displayWordOnScreen();
                 //check if the game is won
+
                 if(!wordDisplayedString.contains("_")){
+                    trGameState.startAnimation(scaleAndRotateAnimation);
                     txtTriesLeft.setText(WINNING_MESSAGE);
                 }
             }
@@ -193,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
             decreaseAndDisplayTriesLeft();
             // check if the game is lost
             if(triesLeft.isEmpty()) {
+                trGameState.startAnimation(scaleAndRotateAnimation);
                 txtTriesLeft.setText(LOSING_MESSAGE);
                 txtWordToBeGuessed.setText(wordToBeGuessed);
 
@@ -211,7 +225,13 @@ public class MainActivity extends AppCompatActivity {
     void decreaseAndDisplayTriesLeft(){
         //if there are still some tries left
         if(!triesLeft.isEmpty()){
+            //animate
+
+            txtTriesLeft.startAnimation(scaleAnimation);
+
+
             //take out the last 2 characters
+
             triesLeft = triesLeft.substring(0, triesLeft.length() - 2);
             txtTriesLeft.setText(triesLeft);
         }
@@ -220,7 +240,11 @@ public class MainActivity extends AppCompatActivity {
     public void resetGame(View v){
 
         //start animation
-        v.startAnimation(rotateAnimation);
+        trReset.startAnimation(rotateAnimation);
+
+        //clear animation on table row
+        trGameState.clearAnimation();
+
         //setup a new game
         initializeGame();
     }
